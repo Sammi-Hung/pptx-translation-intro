@@ -402,204 +402,246 @@
 <body>
   <main class="deck">
     <section class="slide active">
-      <div class="eyebrow">AI 工具實作分享</div>
-      <h1>用 AI 做一個簡報翻譯工具</h1>
-      <p class="lead">這份簡報想分享我怎麼從一個很模糊的想法開始，透過和 AI 來回討論，把需求慢慢講清楚，最後做出可以實際操作的網站。</p>
-      <div class="quote">我最大的收穫是：AI 不一定會直接給出完美答案，但它可以幫我把問題一步一步想清楚。</div>
+      <div class="eyebrow">產品展示</div>
+      <h1>PowerPoint 多語言教材轉換工具</h1>
+      <p class="lead">這是一個公司內部使用的簡報處理網站。使用者上傳 .pptx 後，系統會翻譯投影片文字與講者備註，並把備註轉成語音嵌回簡報。</p>
+      <div class="quote">目標很簡單：減少人工製作多語言教材的時間，也降低漏頁、貼錯和版面跑掉的風險。</div>
       <div class="hint">使用方向鍵或空白鍵換頁，點擊圖片可放大</div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">一開始的想法</div>
-      <h2>我原本只是想解決教材看不懂的問題</h2>
+      <div class="eyebrow">當初為什麼想做</div>
+      <h2>教育訓練不只是把投影片看完</h2>
       <div class="grid two">
         <div class="panel blue">
-          <h3>現場問題</h3>
-          <p>外籍員工可能不熟悉中文，也不一定能完全理解英文。當教材只有單一語言時，訓練內容容易被片段理解。</p>
+          <h3>實際痛點</h3>
+          <p>公司內部教材常用中文或英文，但不同語言背景的員工不一定能完整理解。訓練內容如果只靠單一語言，容易造成學習落差。</p>
         </div>
         <div class="panel green">
-          <h3>後來才想到的問題</h3>
-          <p>講師真正要補充的說明，常常寫在 PowerPoint 講者備註裡。因此只翻譯投影片文字，仍然不夠完整。</p>
+          <h3>被忽略的內容</h3>
+          <p>很多講師補充說明會寫在 PowerPoint 講者備註裡。只翻譯投影片畫面，還是可能漏掉真正要講解的重點。</p>
         </div>
       </div>
-      <div class="quote">所以這個需求後來不只是「翻譯簡報」，而是希望讓不同語言背景的人可以看懂，也可以聽懂教材內容。</div>
+      <div class="quote">所以這個工具要處理的不是單純翻譯文字，而是把教材內容和講者說明一起轉成可理解的語言。</div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">先整理使用流程</div>
-      <h2>我先請 AI 幫我把操作流程變簡單</h2>
+      <div class="eyebrow">原本手動流程</div>
+      <h2>如果人工製作，流程其實很繁瑣</h2>
+      <div class="flow">
+        <div class="step">逐頁複製文字</div>
+        <div class="step">貼到翻譯工具</div>
+        <div class="step">貼回簡報並調版面</div>
+        <div class="step">翻譯備註並產生語音</div>
+        <div class="step">逐頁插入音檔</div>
+      </div>
+      <div class="grid two">
+        <div class="panel amber">
+          <h3>花時間</h3>
+          <p>每一頁都要複製、翻譯、貼回、調整格式。如果簡報頁數多，整個流程會變得很重複。</p>
+        </div>
+        <div class="panel rose">
+          <h3>容易出錯</h3>
+          <p>手動處理很容易漏翻備註、貼錯位置、插錯音檔，或讓原本的字型和條列格式跑掉。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">產品目標</div>
+      <h2>把多語言教材製作中最重複的步驟自動化</h2>
+      <div class="grid three">
+        <div class="panel blue">
+          <span class="number">1</span>
+          <h3>翻譯投影片文字</h3>
+          <p>處理標題、一般文字方塊和指定 Placeholder。</p>
+        </div>
+        <div class="panel green">
+          <span class="number">2</span>
+          <h3>翻譯講者備註</h3>
+          <p>把每頁備註翻成目標語言，並寫回備註區。</p>
+        </div>
+        <div class="panel amber">
+          <span class="number">3</span>
+          <h3>產生並嵌入語音</h3>
+          <p>使用 Windows 本機語音產生旁白，嵌入對應投影片。</p>
+        </div>
+      </div>
+      <p class="lead">最後輸出新的 .pptx，讓使用者可以直接下載並進一步檢查。</p>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">工具怎麼操作</div>
+      <h2>使用者只需要上傳、選擇語言，然後等待完成</h2>
       <div class="split">
         <div class="grid three">
           <div class="panel blue">
             <span class="number">1</span>
-            <h3>上傳簡報</h3>
-            <p>只接受 .pptx，一次處理一份檔案。</p>
+            <h3>上傳 .pptx</h3>
+            <p>限制單檔、格式和大小，避免一開始就送出不支援的檔案。</p>
           </div>
           <div class="panel green">
             <span class="number">2</span>
-            <h3>選擇語言</h3>
-            <p>支援繁體中文、英文與泰文。</p>
+            <h3>選語言與模型</h3>
+            <p>支援繁體中文、英文和泰文，也保留雲端與地端模型切換。</p>
           </div>
           <div class="panel amber">
             <span class="number">3</span>
-            <h3>下載結果</h3>
-            <p>系統完成翻譯與語音嵌入後，直接下載新簡報。</p>
+            <h3>下載成果</h3>
+            <p>處理完成後由瀏覽器下載，檔案保留一段時間後自動清理。</p>
           </div>
         </div>
         <div>
           <img class="shot large zoomable" src="assets/01-home.png" alt="網站首頁操作介面" tabindex="0" />
-          <p class="caption">首頁主要就是上傳檔案、選語言、選模型，再確認語音包狀態。</p>
+          <p class="caption">首頁集中上傳、語言、模型和語音包狀態，讓使用者先確認必要條件。</p>
         </div>
       </div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">把等待過程講清楚</div>
-      <h2>按下開始後，使用者應該知道現在跑到哪裡</h2>
-      <div class="flow">
-        <div class="step">驗證上傳檔案</div>
-        <div class="step">解析簡報內容</div>
-        <div class="step">翻譯投影片文字</div>
-        <div class="step">翻譯備註並產生語音</div>
-        <div class="step">嵌入音訊並輸出</div>
-      </div>
-      <div class="grid two">
-        <div class="panel blue">
-          <h3>我遇到的問題</h3>
-          <p>一開始只想到要有進度條，但後來發現如果只是動畫，其實使用者還是不知道系統是不是真的有在處理。</p>
+      <div class="eyebrow">處理中的狀態</div>
+      <h2>進度條不能只是動畫，要真的反映後端工作</h2>
+      <div class="split">
+        <div>
+          <img class="shot large zoomable" src="assets/04-progress.png" alt="翻譯進度畫面" tabindex="0" />
         </div>
-        <div class="panel green">
-          <h3>後來改成這樣</h3>
-          <p>所以我把進度改成由後端回傳，畫面會顯示目前階段、百分比、頁數和處理訊息。</p>
+        <div class="grid">
+          <div class="panel blue">
+            <h3>使用者看得到目前階段</h3>
+            <p>例如正在翻譯投影片文字、翻譯備註、產生語音或嵌入音訊。</p>
+          </div>
+          <div class="panel green">
+            <h3>錯誤比較容易定位</h3>
+            <p>系統會顯示目前頁數、總頁數和處理訊息，方便判斷問題發生在哪一步。</p>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">決定第一版範圍</div>
-      <h2>做到一半才發現，PowerPoint 其實很複雜</h2>
+      <div class="eyebrow">最難的地方</div>
+      <h2>不是下載檔案，而是翻譯後不要破壞版面</h2>
       <div class="grid two">
         <div class="panel green">
-          <h3>保留的第一版範圍</h3>
+          <h3>需要翻譯的內容</h3>
           <ul>
             <li>一般文字方塊</li>
-            <li>標題 Placeholder</li>
-            <li>本文 Placeholder</li>
-            <li>內容 Placeholder 中的文字</li>
+            <li>標題、本文與內容 Placeholder</li>
             <li>每張投影片的講者備註正文</li>
           </ul>
         </div>
         <div class="panel rose">
-          <h3>先排除的複雜內容</h3>
+          <h3>第一版先不處理</h3>
           <ul>
-            <li>圖片內文字、表格、SmartArt 與圖表</li>
-            <li>WordArt、群組物件與嵌入式物件</li>
-            <li>音訊、影片、頁碼、日期與頁尾</li>
+            <li>圖片內文字、表格、SmartArt、圖表</li>
+            <li>WordArt、群組物件、嵌入式物件</li>
+            <li>頁碼、日期、頁尾、音訊與影片</li>
           </ul>
         </div>
       </div>
-      <p class="lead">這一步讓我學到，問 AI 的時候不能只問「可不可以全部做」，也要想清楚第一版先做到哪裡比較合理。</p>
+      <div class="quote">如果直接覆蓋整個文字方塊，字型、條列、對齊和段落格式都可能跑掉，所以第一版改成以段落為單位處理。</div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">處理格式問題</div>
-      <h2>翻譯簡報不是把文字整段換掉就好</h2>
-      <div class="grid three">
-        <div class="panel blue">
-          <span class="mini-label">段落單位</span>
-          <p>以段落為主要翻譯單位，盡量保留原本段落順序與條列層級。</p>
-        </div>
-        <div class="panel green">
-          <span class="mini-label">保留樣式</span>
-          <p>保留文字方塊位置、大小、字型、字體大小、粗斜體、顏色與對齊方式。</p>
-        </div>
-        <div class="panel amber">
-          <span class="mini-label">避免溢出</span>
-          <p>翻譯後若文字可能超出文字框，逐步縮小字體，仍有風險時顯示警告。</p>
-        </div>
-      </div>
-      <div class="quote">我後來才理解，如果直接覆蓋整個文字方塊，排版很容易跑掉；所以需求要寫得很細，結果才會比較接近能用。</div>
-    </section>
-
-    <section class="slide">
-      <div class="eyebrow">加入備註語音</div>
-      <h2>後來我發現，真正重要的是講者備註</h2>
+      <div class="eyebrow">講者備註與語音</div>
+      <h2>這個工具的特色是把備註也變成旁白</h2>
       <div class="grid two">
         <div class="panel blue">
-          <h3>投影片文字路徑</h3>
-          <p>原文投影片文字 → 翻譯 → 寫回原本位置。</p>
+          <h3>投影片文字</h3>
+          <p>翻譯後寫回原本位置，盡量保留原本版面、字型、段落順序和條列層級。</p>
         </div>
         <div class="panel green">
-          <h3>講者備註路徑</h3>
-          <p>原始備註 → 翻譯 → 寫回備註 → Windows SAPI 產生語音 → 嵌入對應投影片。</p>
+          <h3>講者備註</h3>
+          <p>備註會被翻譯並寫回，同時用目標語言產生語音，嵌入對應投影片。</p>
         </div>
       </div>
       <div class="panel amber" style="margin-top: 24px;">
-        <h3>我的心得</h3>
-        <p>這部分是我覺得和 AI 討論最有用的地方。它讓我重新想，使用者真正需要的不是只有看到翻譯，而是能理解講師原本想補充的內容。</p>
+        <h3>為什麼不自動補講稿？</h3>
+        <p>如果投影片原本沒有備註，系統不會自己編內容。這樣可以避免 AI 自行延伸或產生和原教材不一致的說明。</p>
       </div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">實作中遇到的限制</div>
-      <h2>很多問題不是寫完程式就結束了</h2>
+      <div class="eyebrow">實測遇到的問題</div>
+      <h2>錯誤訊息要讓使用者知道下一步怎麼做</h2>
       <div class="grid two">
+        <div>
+          <img class="shot zoomable" src="assets/06-translation-error.png" alt="正式翻譯服務回應錯誤畫面" tabindex="0" />
+          <p class="caption">翻譯服務可能失敗，不能只假設 API 一定正常。</p>
+        </div>
+        <div>
+          <img class="shot zoomable" src="assets/07-state-error.png" alt="翻譯中同時顯示 Failed to fetch 的狀態錯誤畫面" tabindex="0" />
+          <p class="caption">畫面同時出現翻譯中和錯誤，會讓使用者不確定系統狀態。</p>
+        </div>
+      </div>
+      <div class="quote">這類問題讓我後來更重視進度、錯誤和停止狀態要以後端工作狀態為準。</div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">代表性修正</div>
+      <h2>測試後補上的不是裝飾，而是使用者需要的回饋</h2>
+      <div class="grid three">
         <div class="panel blue">
-          <h3>模型與環境</h3>
-          <p>過程中我試過雲端模型和地端 Ollama，也遇到模型錯誤、網路設定和連線問題，所以最後做成可以切換模型的方式。</p>
-          <img class="shot zoomable" src="assets/03-model.png" alt="翻譯模型切換選單" tabindex="0" />
+          <span class="mini-label">錯誤處理</span>
+          <p>翻譯服務、語音包、模型連線失敗時，要用看得懂的訊息提醒使用者。</p>
+        </div>
+        <div class="panel green">
+          <span class="mini-label">狀態同步</span>
+          <p>前端畫面不自己猜狀態，而是定期讀取後端工作進度。</p>
         </div>
         <div class="panel amber">
-          <h3>語音包限制</h3>
-          <p>語音部分改用 Windows 本機語音，雖然不用另外付費，但如果電腦沒有安裝對應語音包，就會產生失敗。</p>
-          <img class="shot zoomable" src="assets/02-language.png" alt="語言選單與語音包狀態" tabindex="0" />
+          <span class="mini-label">停止與重試</span>
+          <p>處理中可以停止，失敗後也要能回到可重新上傳的狀態。</p>
         </div>
       </div>
+      <p class="lead">這些修正讓工具比較不像一次性的 Demo，而是更接近實際會有人使用的網站。</p>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">測試後一直修正</div>
-      <h2>很多功能都是實際測了才知道少了什麼</h2>
+      <div class="eyebrow">修正後成果</div>
+      <h2>完成後提供結果統計與下載</h2>
       <div class="split">
         <div>
-          <img class="shot large zoomable" src="assets/04-progress.png" alt="翻譯進度畫面" tabindex="0" />
-          <p class="caption">處理中畫面：進度、頁數、錯誤提示和停止按鈕，都是測試時發現需要才補上的。</p>
+          <img class="shot large zoomable" src="assets/05-complete.png" alt="翻譯完成下載畫面" tabindex="0" />
+          <p class="caption">完成畫面會顯示輸出檔名、投影片數、文字頁數、語音頁數、警告數和下載按鈕。</p>
         </div>
-        <div>
-          <img class="shot zoomable" src="assets/05-complete.png" alt="翻譯完成下載畫面" tabindex="0" />
-          <p class="caption">完成畫面：不只是下載檔案，也要讓使用者知道這次處理了哪些內容。</p>
+        <div class="grid">
+          <div class="panel green">
+            <h3>下載由瀏覽器處理</h3>
+            <p>網站不直接寫入使用者桌面或指定磁碟，避免瀏覽器安全限制與路徑問題。</p>
+          </div>
+          <div class="panel amber">
+            <h3>檔案暫存後清理</h3>
+            <p>完成或失敗後保留一段時間，讓使用者能下載，也避免公司內部檔案長期留在伺服器。</p>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">最後心得</div>
-      <h2>這次使用 AI，我學到的不只是下指令</h2>
-      <div class="grid two">
+      <div class="eyebrow">價值、限制與 AI 使用心得</div>
+      <h2>最後完成的是一個可用，但仍保留邊界的工具</h2>
+      <div class="grid three">
         <div class="panel green">
-          <h3>對我最有幫助的地方</h3>
-          <ul>
-            <li>把一個模糊想法慢慢整理成可以做的需求</li>
-            <li>把很大的功能拆成前端、後端、檔案處理和語音功能</li>
-            <li>遇到錯誤時，先看現象和紀錄，再一步一步找原因</li>
-          </ul>
+          <h3>目前價值</h3>
+          <p>減少人工翻譯、貼回、調版面和插入音訊的時間，也降低漏頁與貼錯的機率。</p>
         </div>
         <div class="panel blue">
-          <h3>也要注意的地方</h3>
-          <ul>
-            <li>AI 有時候會做太多，所以自己要守住需求範圍</li>
-            <li>不能只看程式有沒有跑，還要真的拿檔案測試</li>
-            <li>修一個問題時，也要確認沒有把其他地方改壞</li>
-          </ul>
+          <h3>第一版限制</h3>
+          <p>不處理圖片文字、表格、SmartArt、圖表和複雜物件，輸出後仍需要人工最後確認。</p>
+        </div>
+        <div class="panel amber">
+          <h3>AI 的角色</h3>
+          <p>AI 幫我整理需求、拆解功能和排查錯誤，但功能取捨和結果驗收還是要自己判斷。</p>
         </div>
       </div>
-      <div class="quote">對我來說，AI 很像一個可以一直討論的夥伴，但最後要做什麼、做到哪裡、算不算完成，還是要自己判斷。</div>
+      <div class="quote">這次最重要的不是做出一個「什麼都能翻」的工具，而是把一個實際工作流程先做得清楚、可測試、可改進。</div>
     </section>
   </main>
 
   <div class="controls" aria-label="簡報控制">
     <button type="button" id="prev">上一頁</button>
-    <div class="count" id="count">1 / 10</div>
+    <div class="count" id="count">1 / 12</div>
     <button type="button" id="next">下一頁</button>
   </div>
 
