@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PowerPoint 翻譯與備註語音嵌入功能介紹</title>
+  <title>PowerPoint 多語言教材轉換工具介紹</title>
   <style>
     :root {
       --ink: #10233f;
@@ -16,6 +16,8 @@
       --green-200: #9fe6c2;
       --amber-50: #fff8e7;
       --amber-200: #f5d67a;
+      --rose-50: #fff1f2;
+      --rose-200: #fecdd3;
       --line: #d8e2ef;
       --paper: #ffffff;
       --bg: #f5f8fc;
@@ -49,40 +51,32 @@
       width: min(1280px, calc(100vw - 48px));
       aspect-ratio: 16 / 9;
       max-height: calc(100vh - 48px);
-      padding: 54px 64px;
       overflow: hidden;
-      border: 1px solid rgba(216, 226, 239, 0.9);
-      background: rgba(255, 255, 255, 0.96);
+      padding: clamp(32px, 4vw, 64px);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--paper);
       box-shadow: var(--shadow);
+      animation: enter 360ms ease both;
     }
 
     .slide.active { display: block; }
 
-    .slide.active {
-      animation: slideIn 420ms ease both;
+    @keyframes enter {
+      from { opacity: 0; transform: translateY(16px) scale(0.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(16px) scale(0.985);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    .kicker {
+    .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       padding: 7px 12px;
       border: 1px solid var(--blue-100);
       border-radius: 999px;
-      background: #fff;
-      color: var(--brand);
+      color: var(--brand-dark);
+      background: #f7fbff;
       font-size: 15px;
       font-weight: 700;
     }
@@ -90,520 +84,524 @@
     h1, h2, h3, p { margin: 0; }
 
     h1 {
-      max-width: 900px;
-      font-size: 58px;
-      line-height: 1.05;
+      max-width: 980px;
+      font-size: clamp(42px, 5.6vw, 76px);
+      line-height: 1.08;
       letter-spacing: 0;
     }
 
     h2 {
-      font-size: 42px;
+      max-width: 980px;
+      font-size: clamp(34px, 4.1vw, 56px);
       line-height: 1.12;
       letter-spacing: 0;
     }
 
     h3 {
-      font-size: 23px;
+      font-size: clamp(21px, 2.1vw, 28px);
       line-height: 1.25;
     }
 
     .lead {
-      max-width: 820px;
+      max-width: 900px;
       margin-top: 22px;
       color: var(--muted);
-      font-size: 24px;
+      font-size: clamp(20px, 2vw, 30px);
       line-height: 1.55;
     }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 34px;
-      align-items: center;
-      height: calc(100% - 84px);
-      margin-top: 30px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
+    .quote {
       margin-top: 34px;
-    }
-
-    .feature {
-      min-height: 190px;
-      padding: 26px;
-      border: 1px solid var(--line);
+      padding: 24px 28px;
+      border-left: 8px solid var(--brand);
       background: var(--blue-50);
-    }
-
-    .feature:nth-child(2) { background: var(--green-50); border-color: var(--green-200); }
-    .feature:nth-child(3) { background: var(--amber-50); border-color: var(--amber-200); }
-
-    .feature .icon {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 18px;
-      border-radius: 50%;
-      background: #fff;
-      color: var(--brand);
-      font-size: 22px;
+      color: var(--brand-dark);
+      font-size: clamp(24px, 2.5vw, 36px);
+      line-height: 1.45;
       font-weight: 800;
     }
 
-    .feature p,
-    .list li {
-      color: var(--muted);
-      font-size: 19px;
+    .grid {
+      display: grid;
+      gap: 22px;
+      margin-top: 32px;
+    }
+
+    .grid.two {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .panel {
+      min-height: 132px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    .panel.blue {
+      border-color: var(--blue-100);
+      background: var(--blue-50);
+    }
+
+    .panel.green {
+      border-color: var(--green-200);
+      background: var(--green-50);
+    }
+
+    .panel.amber {
+      border-color: var(--amber-200);
+      background: var(--amber-50);
+    }
+
+    .panel.rose {
+      border-color: var(--rose-200);
+      background: var(--rose-50);
+    }
+
+    .panel p,
+    .panel li {
+      color: #233b58;
+      font-size: clamp(18px, 1.6vw, 24px);
       line-height: 1.55;
     }
 
-    .list {
-      display: grid;
-      gap: 14px;
-      padding: 0;
-      margin: 28px 0 0;
-      list-style: none;
-    }
-
-    .list li {
-      position: relative;
-      padding-left: 28px;
-    }
-
-    .list li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 12px;
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--brand);
-    }
-
-    .shot {
-      width: 100%;
-      max-height: 520px;
-      object-fit: contain;
-      border: 1px solid var(--line);
-      background: #fff;
-      box-shadow: 0 10px 30px rgba(16, 35, 63, 0.08);
-      cursor: zoom-in;
-      transition: transform 180ms ease, box-shadow 180ms ease;
-    }
-
-    .shot:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 40px rgba(16, 35, 63, 0.16);
-    }
-
-    .shot:focus-visible {
-      outline: 3px solid rgba(23, 105, 181, 0.45);
-      outline-offset: 4px;
-    }
-
-    .shot.large {
-      max-height: 610px;
-    }
-
-    .caption {
+    .panel h3 + p,
+    .panel h3 + ul,
+    .panel p + p {
       margin-top: 12px;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.45;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1.2em;
+    }
+
+    li + li { margin-top: 9px; }
+
+    .number {
+      width: 42px;
+      height: 42px;
+      display: inline-grid;
+      place-items: center;
+      margin-bottom: 14px;
+      border-radius: 999px;
+      background: var(--brand);
+      color: white;
+      font-weight: 800;
+      font-size: 20px;
     }
 
     .flow {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 14px;
-      margin-top: 40px;
-    }
-
-    .step {
-      min-height: 180px;
-      padding: 22px 18px;
-      border: 1px solid var(--line);
-      background: #fff;
-    }
-
-    .step strong {
-      display: block;
-      margin-bottom: 12px;
-      color: var(--brand-dark);
-      font-size: 20px;
-    }
-
-    .step p {
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.45;
-    }
-
-    .split-note {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 30px;
-      align-items: start;
-      margin-top: 28px;
-    }
-
-    .panel {
-      padding: 26px;
-      border: 1px solid var(--line);
-      background: var(--blue-50);
-    }
-
-    .panel.green { background: var(--green-50); border-color: var(--green-200); }
-    .panel.amber { background: var(--amber-50); border-color: var(--amber-200); }
-
-    .metric-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
       margin-top: 34px;
     }
 
-    .metric {
-      padding: 24px;
+    .step {
+      min-height: 124px;
+      padding: 18px;
+      border: 1px solid var(--blue-100);
+      border-radius: 12px;
+      background: var(--blue-50);
+      font-size: clamp(18px, 1.4vw, 22px);
+      line-height: 1.4;
+      font-weight: 800;
+      color: var(--brand-dark);
+    }
+
+    .shot {
+      display: block;
+      width: 100%;
+      max-height: 410px;
+      object-fit: contain;
       border: 1px solid var(--line);
-      background: #fff;
-      text-align: center;
+      border-radius: 12px;
+      background: #f6f9fd;
+      box-shadow: 0 12px 30px rgba(16, 35, 63, 0.08);
+      cursor: zoom-in;
     }
 
-    .metric strong {
-      display: block;
-      color: var(--brand);
-      font-size: 38px;
-      line-height: 1;
-    }
+    .shot.large { max-height: 450px; }
 
-    .metric span {
-      display: block;
+    .caption {
       margin-top: 10px;
       color: var(--muted);
-      font-size: 17px;
+      font-size: 15px;
+      line-height: 1.4;
     }
 
-    .footer {
-      position: absolute;
-      left: 64px;
-      right: 64px;
-      bottom: 26px;
-      display: flex;
-      justify-content: space-between;
-      color: #8292a7;
-      font-size: 14px;
+    .mini-label {
+      display: inline-flex;
+      margin-bottom: 8px;
+      padding: 5px 9px;
+      border-radius: 8px;
+      background: #f1f6fb;
+      color: var(--brand-dark);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.03fr 0.97fr;
+      gap: 34px;
+      align-items: center;
+      margin-top: 28px;
     }
 
     .controls {
       position: fixed;
-      right: 22px;
-      bottom: 20px;
-      z-index: 10;
+      left: 50%;
+      bottom: 24px;
       display: flex;
-      gap: 8px;
       align-items: center;
-      padding: 8px;
+      gap: 12px;
+      transform: translateX(-50%);
+      z-index: 20;
+      padding: 10px 12px;
+      border: 1px solid rgba(216, 226, 239, 0.9);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 12px 30px rgba(16, 35, 63, 0.13);
+      backdrop-filter: blur(12px);
+    }
+
+    button {
+      height: 42px;
       border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.9);
-      box-shadow: 0 8px 30px rgba(16, 35, 63, 0.12);
+      border-radius: 999px;
+      padding: 0 18px;
+      background: white;
+      color: var(--ink);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button:hover,
+    button:focus-visible {
+      border-color: var(--brand);
+      outline: none;
+    }
+
+    .count {
+      min-width: 78px;
+      text-align: center;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .hint {
+      position: absolute;
+      right: 36px;
+      bottom: 28px;
+      color: #7a8ba0;
+      font-size: 14px;
     }
 
     .lightbox {
       position: fixed;
       inset: 0;
-      z-index: 20;
       display: none;
       place-items: center;
-      padding: 34px;
-      background: rgba(8, 18, 32, 0.72);
-      backdrop-filter: blur(8px);
+      z-index: 50;
+      padding: 26px;
+      background: rgba(7, 18, 34, 0.82);
     }
 
-    .lightbox.open {
-      display: grid;
-      animation: fadeIn 180ms ease both;
-    }
+    .lightbox.open { display: grid; }
 
     .lightbox img {
       max-width: min(96vw, 1400px);
-      max-height: 88vh;
-      object-fit: contain;
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      background: #fff;
-      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+      max-height: 92vh;
+      border-radius: 12px;
+      background: white;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
     }
 
     .lightbox button {
       position: absolute;
-      top: 20px;
+      top: 22px;
       right: 22px;
-      width: 42px;
-      height: 42px;
-      border-color: rgba(255, 255, 255, 0.4);
-      background: rgba(255, 255, 255, 0.92);
-      color: var(--ink);
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      color: white;
+      background: rgba(255, 255, 255, 0.14);
       font-size: 28px;
       line-height: 1;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    button {
-      width: 38px;
-      height: 34px;
-      border: 1px solid var(--line);
-      background: #fff;
-      color: var(--brand);
-      font-size: 18px;
-      cursor: pointer;
-    }
-
-    .count {
-      min-width: 54px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    @media (max-width: 900px) {
+    @media (max-width: 860px) {
       body { overflow: auto; }
-      .deck { height: auto; min-height: 100vh; padding: 0; }
-      .slide {
-        width: 100vw;
+
+      .deck {
+        height: auto;
         min-height: 100vh;
+        padding: 14px;
+      }
+
+      .slide {
+        width: 100%;
+        min-height: calc(100vh - 100px);
+        height: auto;
         max-height: none;
         aspect-ratio: auto;
-        padding: 34px 24px 74px;
+        overflow: visible;
+        padding: 26px;
       }
-      h1 { font-size: 38px; }
-      h2 { font-size: 30px; }
-      .lead { font-size: 19px; }
-      .grid-2, .grid-3, .split-note, .flow, .metric-row {
+
+      .grid.two,
+      .grid.three,
+      .split,
+      .flow {
         grid-template-columns: 1fr;
-        height: auto;
       }
-      .shot { max-height: none; }
-      .footer { left: 24px; right: 24px; }
+
+      .controls { bottom: 10px; }
+      .hint { display: none; }
     }
 
     @media print {
-      body { overflow: visible; background: #fff; }
-      .deck { display: block; padding: 0; }
+      body {
+        overflow: visible;
+        background: white;
+      }
+
+      .deck {
+        display: block;
+        height: auto;
+        padding: 0;
+      }
+
       .slide {
         display: block;
-        width: 100vw;
-        height: 100vh;
+        width: 100%;
+        max-height: none;
         page-break-after: always;
+        border: 0;
+        border-radius: 0;
         box-shadow: none;
       }
-      .controls { display: none; }
+
+      .controls,
+      .lightbox {
+        display: none !important;
+      }
     }
   </style>
 </head>
 <body>
-  <main class="deck" aria-live="polite">
+  <main class="deck">
     <section class="slide active">
-      <span class="kicker">公司內部簡報處理工具</span>
-      <h1>PowerPoint 翻譯與備註語音嵌入</h1>
-      <p class="lead">上傳 `.pptx` 後，系統會翻譯投影片文字與講者備註，並將備註轉成旁白嵌入原簡報，降低跨語言教材製作時間。</p>
-      <div class="grid-3">
-        <div class="feature">
-          <div class="icon">文</div>
-          <h3>投影片文字翻譯</h3>
-          <p>處理文字方塊與指定 Placeholder，盡量保留段落、字型、條列與版面。</p>
-        </div>
-        <div class="feature">
-          <div class="icon">聲</div>
-          <h3>備註轉語音</h3>
-          <p>每頁講者備註會翻譯成目標語言，並由 Windows SAPI 產生對應語音。</p>
-        </div>
-        <div class="feature">
-          <div class="icon">檔</div>
-          <h3>輸出可下載簡報</h3>
-          <p>語音會嵌入 PowerPoint 檔案，完成後可在保存期限內重複下載。</p>
-        </div>
-      </div>
-      <div class="footer"><span>功能介紹</span><span>1 / 8</span></div>
+      <div class="eyebrow">公司內部教育訓練工具</div>
+      <h1>從語言理解落差，到 PowerPoint 多語言教材轉換工具</h1>
+      <p class="lead">這份簡報不是只介紹功能，而是說明需求如何從一個實際問題開始，一路收斂成目前可操作的網站。</p>
+      <div class="quote">如何讓不同語言背景的員工，都能比較完整地理解同一份教育訓練簡報內容？</div>
+      <div class="hint">使用方向鍵或空白鍵換頁，點擊圖片可放大</div>
     </section>
 
     <section class="slide">
-      <h2>第一眼看到的操作入口</h2>
-      <div class="grid-2">
-        <div>
-          <p class="lead">首頁把任務拆成三件事：上傳簡報、選擇語言與模型、確認語音包狀態。使用者不需要理解後端流程，也能知道現在是否可以開始。</p>
-          <ul class="list">
-            <li>只接受 `.pptx`，最大 50 MB。</li>
-            <li>拖曳或點擊上傳都支援。</li>
-            <li>語音包、語言與模型條件符合後才允許送出。</li>
-          </ul>
+      <div class="eyebrow">背景需求</div>
+      <h2>起點不是「翻譯工具」，而是教育訓練的理解落差</h2>
+      <div class="grid two">
+        <div class="panel blue">
+          <h3>公司現場遇到的問題</h3>
+          <p>外籍員工可能不熟悉中文，也不一定能完全理解英文。當教材只有單一語言時，訓練內容容易被片段理解。</p>
+        </div>
+        <div class="panel green">
+          <h3>簡報內容不只在畫面上</h3>
+          <p>講師真正要補充的說明，常常寫在 PowerPoint 講者備註裡。因此只翻譯投影片文字，仍然不夠完整。</p>
+        </div>
+      </div>
+      <div class="quote">專案逐漸從「簡報文字翻譯」變成「投影片內容加講者旁白的多語言轉換」。</div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">初始想法</div>
+      <h2>最初希望使用者只需要完成三件事</h2>
+      <div class="split">
+        <div class="grid three">
+          <div class="panel blue">
+            <span class="number">1</span>
+            <h3>上傳簡報</h3>
+            <p>只接受 .pptx，一次處理一份檔案。</p>
+          </div>
+          <div class="panel green">
+            <span class="number">2</span>
+            <h3>選擇語言</h3>
+            <p>支援繁體中文、英文與泰文。</p>
+          </div>
+          <div class="panel amber">
+            <span class="number">3</span>
+            <h3>下載結果</h3>
+            <p>系統完成翻譯與語音嵌入後，直接下載新簡報。</p>
+          </div>
         </div>
         <div>
           <img class="shot large zoomable" src="assets/01-home.png" alt="網站首頁操作介面" tabindex="0" />
-          <p class="caption">首頁畫面：左側上傳，右側集中語言、模型與語音狀態。</p>
+          <p class="caption">首頁畫面：左側上傳簡報，右側選擇語言、模型與檢查 Windows 語音包。</p>
         </div>
       </div>
-      <div class="footer"><span>操作入口</span><span>2 / 8</span></div>
     </section>
 
     <section class="slide">
-      <h2>支援三種語言方向</h2>
-      <div class="grid-2">
-        <div>
-          <img class="shot zoomable" src="assets/02-language.png" alt="語言選單畫面" tabindex="0" />
+      <div class="eyebrow">操作流程收斂</div>
+      <h2>等待處理時，使用者需要知道系統正在做什麼</h2>
+      <div class="flow">
+        <div class="step">驗證上傳檔案</div>
+        <div class="step">解析簡報內容</div>
+        <div class="step">翻譯投影片文字</div>
+        <div class="step">翻譯備註並產生語音</div>
+        <div class="step">嵌入音訊並輸出</div>
+      </div>
+      <div class="grid two">
+        <div class="panel blue">
+          <h3>避免重複送出</h3>
+          <p>翻譯開始後會鎖定上傳區、語言選單與模型選單，避免同一時間處理多個檔案造成狀態混亂。</p>
         </div>
-        <div>
-          <p class="lead">目前支援繁體中文、英文與泰文。原始語言與目標語言不可相同，語音語言會跟著目標語言檢查。</p>
-          <div class="split-note">
-            <div class="panel">
-              <h3>語言規則</h3>
-              <ul class="list">
-                <li>繁體中文：`zh-TW`</li>
-                <li>英文：`en-US`</li>
-                <li>泰文：`th-TH`</li>
-              </ul>
-            </div>
-            <div class="panel green">
-              <h3>送出條件</h3>
-              <ul class="list">
-                <li>檔案格式正確</li>
-                <li>大小符合限制</li>
-                <li>語言不相同</li>
-                <li>語音包可用</li>
-              </ul>
-            </div>
-          </div>
+        <div class="panel green">
+          <h3>進度來自後端狀態</h3>
+          <p>畫面每秒查詢後端工作狀態，顯示目前階段、處理頁數、總頁數與即時訊息。</p>
         </div>
       </div>
-      <div class="footer"><span>語言設定</span><span>3 / 8</span></div>
     </section>
 
     <section class="slide">
-      <h2>可切換雲端與地端翻譯模型</h2>
-      <div class="grid-2">
-        <div>
-          <p class="lead">翻譯服務被設計成獨立模組，可以依使用情境切換雲端模型或內部地端模型，不把 API 細節寫死在 PowerPoint 處理流程裡。</p>
-          <ul class="list">
-            <li>雲端模型：適合網路穩定、需要較高翻譯品質時。</li>
-            <li>地端模型：適合資料不出內網或測試內部模型能力時。</li>
-            <li>Mock 模式：沒有 API key 時仍可測完整流程。</li>
+      <div class="eyebrow">最重要的一次需求收斂</div>
+      <h2>PowerPoint 裡不是所有東西都適合第一版翻譯</h2>
+      <div class="grid two">
+        <div class="panel green">
+          <h3>第一版處理範圍</h3>
+          <ul>
+            <li>一般文字方塊</li>
+            <li>標題 Placeholder</li>
+            <li>本文 Placeholder</li>
+            <li>內容 Placeholder 中的文字</li>
+            <li>每張投影片的講者備註正文</li>
           </ul>
         </div>
-        <div>
-          <img class="shot zoomable" src="assets/03-model.png" alt="翻譯模型選單畫面" tabindex="0" />
-          <p class="caption">模型選單可在送出前切換，處理中會鎖定避免狀態不一致。</p>
+        <div class="panel rose">
+          <h3>第一版刻意不處理</h3>
+          <ul>
+            <li>圖片內文字、表格、SmartArt 與圖表</li>
+            <li>WordArt、群組物件與嵌入式物件</li>
+            <li>音訊、影片、頁碼、日期與頁尾</li>
+          </ul>
         </div>
       </div>
-      <div class="footer"><span>模型切換</span><span>4 / 8</span></div>
+      <p class="lead">這個收斂讓系統更穩定，也降低翻譯過程破壞原始簡報排版的機率。</p>
     </section>
 
     <section class="slide">
-      <h2>處理流程與實際進度</h2>
-      <div class="flow">
-        <div class="step"><strong>1. 驗證</strong><p>確認檔案格式、大小、語言與工作狀態。</p></div>
-        <div class="step"><strong>2. 擷取</strong><p>讀取投影片文字方塊、Placeholder 與講者備註。</p></div>
-        <div class="step"><strong>3. 翻譯</strong><p>逐頁翻譯投影片文字與備註，保留版面格式。</p></div>
-        <div class="step"><strong>4. 語音</strong><p>每頁有效備註產生一個獨立旁白音檔。</p></div>
-        <div class="step"><strong>5. 輸出</strong><p>將音訊嵌入投影片並驗證輸出簡報。</p></div>
-      </div>
-      <div class="split-note">
-        <div class="panel">
-          <h3>不是假動畫</h3>
-          <p class="caption">前端每秒查詢後端工作狀態，進度條、頁數、階段與訊息都來自實際處理流程。</p>
+      <div class="eyebrow">格式保留</div>
+      <h2>翻譯不能只是把整個文字方塊覆蓋掉</h2>
+      <div class="grid three">
+        <div class="panel blue">
+          <span class="mini-label">段落單位</span>
+          <p>以段落為主要翻譯單位，盡量保留原本段落順序與條列層級。</p>
+        </div>
+        <div class="panel green">
+          <span class="mini-label">保留樣式</span>
+          <p>保留文字方塊位置、大小、字型、字體大小、粗斜體、顏色與對齊方式。</p>
         </div>
         <div class="panel amber">
-          <h3>可中途停止</h3>
-          <p class="caption">處理中可以按下「停止翻譯」。後端會在安全檢查點停止，不提供不完整下載。</p>
+          <span class="mini-label">避免溢出</span>
+          <p>翻譯後若文字可能超出文字框，逐步縮小字體，仍有風險時顯示警告。</p>
         </div>
       </div>
-      <div class="footer"><span>流程設計</span><span>5 / 8</span></div>
+      <div class="quote">目的不是做一份全新簡報，而是在盡量不破壞原始版面的前提下完成多語言轉換。</div>
     </section>
 
     <section class="slide">
-      <h2>翻譯中畫面清楚顯示狀態</h2>
-      <div class="grid-2">
+      <div class="eyebrow">關鍵特色</div>
+      <h2>講者備註讓工具不只是「翻譯投影片」</h2>
+      <div class="grid two">
+        <div class="panel blue">
+          <h3>投影片文字路徑</h3>
+          <p>原文投影片文字 → 翻譯 → 寫回原本位置。</p>
+        </div>
+        <div class="panel green">
+          <h3>講者備註路徑</h3>
+          <p>原始備註 → 翻譯 → 寫回備註 → Windows SAPI 產生語音 → 嵌入對應投影片。</p>
+        </div>
+      </div>
+      <div class="panel amber" style="margin-top: 24px;">
+        <h3>語音功能的第一版邊界</h3>
+        <p>只使用投影片原本的講者備註產生旁白。沒有備註的頁面不自動產生講稿，也不拿投影片文字代替。</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">技術限制與決策</div>
+      <h2>開發過程中的限制，也反過來定義產品邊界</h2>
+      <div class="grid two">
+        <div class="panel blue">
+          <h3>翻譯模型切換</h3>
+          <p>保留雲端模型與地端 Ollama 模型切換介面，讓公司可依成本、速度與資料安全需求調整。</p>
+          <img class="shot zoomable" src="assets/03-model.png" alt="翻譯模型切換選單" tabindex="0" />
+        </div>
+        <div class="panel amber">
+          <h3>Windows 本機語音</h3>
+          <p>第一版採用 Windows SAPI，不額外產生外部語音費用，但語音品質與可用語言取決於電腦安裝的語音包。</p>
+          <img class="shot zoomable" src="assets/02-language.png" alt="語言選單與語音包狀態" tabindex="0" />
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">最終成果</div>
+      <h2>最後形成一個可操作、可驗證、可下載的網站流程</h2>
+      <div class="split">
         <div>
           <img class="shot large zoomable" src="assets/04-progress.png" alt="翻譯進度畫面" tabindex="0" />
+          <p class="caption">處理中畫面會顯示目前階段、進度百分比、頁數與可即時停止的按鈕。</p>
         </div>
         <div>
-          <p class="lead">使用者可以知道目前處理到哪個階段、哪一頁，以及是否仍可停止工作。</p>
-          <div class="metric-row">
-            <div class="metric"><strong>%</strong><span>實際進度</span></div>
-            <div class="metric"><strong>頁</strong><span>目前頁數</span></div>
-            <div class="metric"><strong>階</strong><span>處理階段</span></div>
-            <div class="metric"><strong>停</strong><span>即時停止</span></div>
-          </div>
+          <img class="shot zoomable" src="assets/05-complete.png" alt="翻譯完成下載畫面" tabindex="0" />
+          <p class="caption">完成後顯示輸出檔名、總頁數、語音頁數、警告數與下載按鈕。</p>
         </div>
       </div>
-      <div class="footer"><span>進度畫面</span><span>6 / 8</span></div>
     </section>
 
     <section class="slide">
-      <h2>完成後提供結果統計與下載</h2>
-      <div class="grid-2">
-        <div>
-          <p class="lead">成功後會顯示輸出檔名、總頁數、已處理文字頁數、語音頁數、警告數量與到期時間。</p>
-          <ul class="list">
-            <li>下載由瀏覽器決定儲存位置。</li>
-            <li>檔案完成或停止後保留 30 分鐘。</li>
-            <li>若驗證失敗，不提供不完整簡報。</li>
+      <div class="eyebrow">最終定位</div>
+      <h2>這是一套降低多語言教材製作門檻的內部工具</h2>
+      <div class="grid two">
+        <div class="panel green">
+          <h3>帶來的價值</h3>
+          <ul>
+            <li>降低不同語言背景員工的訓練理解落差</li>
+            <li>減少人工翻譯簡報與重錄旁白的時間</li>
+            <li>讓教材文字、備註與旁白維持在同一份檔案中</li>
           </ul>
         </div>
-        <div>
-          <img class="shot zoomable" src="assets/05-complete.png" alt="完成下載畫面" tabindex="0" />
-          <p class="caption">完成畫面會提示警告，例如本機 SAPI 語音品質取決於安裝的語音包。</p>
+        <div class="panel blue">
+          <h3>第一版保持克制</h3>
+          <ul>
+            <li>不加入登入、資料庫與多檔案排隊</li>
+            <li>不處理 PDF、OCR 或圖片內文字</li>
+            <li>複雜格式仍保留人工確認空間</li>
+          </ul>
         </div>
       </div>
-      <div class="footer"><span>完成與下載</span><span>7 / 8</span></div>
-    </section>
-
-    <section class="slide">
-      <h2>使用前請確認的條件</h2>
-      <div class="grid-3">
-        <div class="feature">
-          <div class="icon">P</div>
-          <h3>PowerPoint</h3>
-          <p>正式音訊嵌入需要 Windows 電腦已安裝 Microsoft PowerPoint 桌面版。</p>
-        </div>
-        <div class="feature">
-          <div class="icon">語</div>
-          <h3>Windows 語音包</h3>
-          <p>目標語言需安裝對應 SAPI 語音包，否則無法產生該語言旁白。</p>
-        </div>
-        <div class="feature">
-          <div class="icon">鑰</div>
-          <h3>模型設定</h3>
-          <p>正式翻譯需設定 Gemini 或 Ollama；沒有設定時可用 mock 模式先測流程。</p>
-        </div>
-      </div>
-      <div class="split-note">
-        <div class="panel">
-          <h3>適合用途</h3>
-          <p class="caption">跨語言教育訓練、內部簡報初稿、本機旁白測試、需要保留簡報格式的翻譯流程。</p>
-        </div>
-        <div class="panel amber">
-          <h3>仍需人工確認</h3>
-          <p class="caption">複雜版面、特殊字型、圖片內文字、表格與圖表文字不在第一版翻譯範圍內。</p>
-        </div>
-      </div>
-      <div class="footer"><span>使用條件</span><span>8 / 8</span></div>
+      <div class="quote">從實際教育訓練需求出發，讓同一份 PowerPoint 能更接近多語言可理解、可聽、可下載的教材。</div>
     </section>
   </main>
 
-  <nav class="controls" aria-label="簡報控制">
-    <button type="button" id="prev" aria-label="上一頁">‹</button>
-    <span class="count" id="count">1 / 8</span>
-    <button type="button" id="next" aria-label="下一頁">›</button>
-  </nav>
+  <div class="controls" aria-label="簡報控制">
+    <button type="button" id="prev">上一頁</button>
+    <div class="count" id="count">1 / 10</div>
+    <button type="button" id="next">下一頁</button>
+  </div>
 
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="放大圖片">
     <button type="button" id="closeLightbox" aria-label="關閉放大圖片">×</button>
@@ -619,8 +617,8 @@
     let index = 0;
     let lastFocusedImage = null;
 
-    function show(nextIndex) {
-      index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+    function showSlide(nextIndex) {
+      index = (nextIndex + slides.length) % slides.length;
       slides.forEach((slide, slideIndex) => {
         slide.classList.toggle("active", slideIndex === index);
       });
@@ -628,8 +626,12 @@
       history.replaceState(null, "", `#${index + 1}`);
     }
 
-    document.getElementById("prev").addEventListener("click", () => show(index - 1));
-    document.getElementById("next").addEventListener("click", () => show(index + 1));
+    function fromHash() {
+      const value = Number(location.hash.replace("#", ""));
+      if (Number.isInteger(value) && value >= 1 && value <= slides.length) {
+        showSlide(value - 1);
+      }
+    }
 
     window.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && lightbox.classList.contains("open")) {
@@ -639,18 +641,18 @@
       if (lightbox.classList.contains("open")) return;
       if (["ArrowRight", "PageDown", " "].includes(event.key)) {
         event.preventDefault();
-        show(index + 1);
+        showSlide(index + 1);
       }
       if (["ArrowLeft", "PageUp"].includes(event.key)) {
         event.preventDefault();
-        show(index - 1);
+        showSlide(index - 1);
       }
-      if (event.key === "Home") show(0);
-      if (event.key === "End") show(slides.length - 1);
+      if (event.key === "Home") showSlide(0);
+      if (event.key === "End") showSlide(slides.length - 1);
     });
 
-    const initial = Number.parseInt(location.hash.replace("#", ""), 10);
-    if (Number.isFinite(initial)) show(initial - 1);
+    document.getElementById("prev").addEventListener("click", () => showSlide(index - 1));
+    document.getElementById("next").addEventListener("click", () => showSlide(index + 1));
 
     function openImage(image) {
       lastFocusedImage = image;
@@ -680,6 +682,8 @@
     lightbox.addEventListener("click", (event) => {
       if (event.target === lightbox) closeImage();
     });
+    window.addEventListener("hashchange", fromHash);
+    fromHash();
   </script>
 </body>
 </html>
