@@ -402,32 +402,32 @@
 <body>
   <main class="deck">
     <section class="slide active">
-      <div class="eyebrow">AI 協作實作分享</div>
-      <h1>我如何用 AI 做出簡報翻譯工具</h1>
-      <p class="lead">這份簡報分享的重點不是單純展示功能，而是我如何透過 AI 對話，把一個模糊需求拆清楚、做出原型、排查錯誤，再逐步收斂成可用工具。</p>
-      <div class="quote">AI 最有幫助的地方，不是一次給答案，而是陪我把問題問得更精準。</div>
+      <div class="eyebrow">AI 工具實作分享</div>
+      <h1>用 AI 做一個簡報翻譯工具</h1>
+      <p class="lead">這份簡報想分享我怎麼從一個很模糊的想法開始，透過和 AI 來回討論，把需求慢慢講清楚，最後做出可以實際操作的網站。</p>
+      <div class="quote">我最大的收穫是：AI 不一定會直接給出完美答案，但它可以幫我把問題一步一步想清楚。</div>
       <div class="hint">使用方向鍵或空白鍵換頁，點擊圖片可放大</div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">第一步：把問題講清楚</div>
-      <h2>一開始我只有一個很實際的困擾</h2>
+      <div class="eyebrow">一開始的想法</div>
+      <h2>我原本只是想解決教材看不懂的問題</h2>
       <div class="grid two">
         <div class="panel blue">
           <h3>現場問題</h3>
           <p>外籍員工可能不熟悉中文，也不一定能完全理解英文。當教材只有單一語言時，訓練內容容易被片段理解。</p>
         </div>
         <div class="panel green">
-          <h3>AI 幫我補上的觀點</h3>
+          <h3>後來才想到的問題</h3>
           <p>講師真正要補充的說明，常常寫在 PowerPoint 講者備註裡。因此只翻譯投影片文字，仍然不夠完整。</p>
         </div>
       </div>
-      <div class="quote">對話後，需求從「幫我翻譯簡報」變成「讓不同語言背景的人能看懂也聽懂教材」。</div>
+      <div class="quote">所以這個需求後來不只是「翻譯簡報」，而是希望讓不同語言背景的人可以看懂，也可以聽懂教材內容。</div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">第二步：先做出可使用流程</div>
-      <h2>AI 讓我先鎖定最小可用流程</h2>
+      <div class="eyebrow">先整理使用流程</div>
+      <h2>我先請 AI 幫我把操作流程變簡單</h2>
       <div class="split">
         <div class="grid three">
           <div class="panel blue">
@@ -448,14 +448,14 @@
         </div>
         <div>
           <img class="shot large zoomable" src="assets/01-home.png" alt="網站首頁操作介面" tabindex="0" />
-          <p class="caption">首頁畫面保留簡單入口：上傳、選語言、選模型、檢查語音包。</p>
+          <p class="caption">首頁主要就是上傳檔案、選語言、選模型，再確認語音包狀態。</p>
         </div>
       </div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">第三步：讓 AI 協助拆解流程</div>
-      <h2>從一句「開始翻譯」拆成可追蹤的階段</h2>
+      <div class="eyebrow">把等待過程講清楚</div>
+      <h2>按下開始後，使用者應該知道現在跑到哪裡</h2>
       <div class="flow">
         <div class="step">驗證上傳檔案</div>
         <div class="step">解析簡報內容</div>
@@ -465,19 +465,19 @@
       </div>
       <div class="grid two">
         <div class="panel blue">
-          <h3>我學到的事</h3>
-          <p>使用者等待時最怕不知道系統是否還活著，所以進度不能只是前端動畫，而要真的來自後端狀態。</p>
+          <h3>我遇到的問題</h3>
+          <p>一開始只想到要有進度條，但後來發現如果只是動畫，其實使用者還是不知道系統是不是真的有在處理。</p>
         </div>
         <div class="panel green">
-          <h3>AI 幫忙轉成規格</h3>
-          <p>每個階段都要有狀態、百分比、頁數與訊息，才能在出錯時知道卡在哪一步。</p>
+          <h3>後來改成這樣</h3>
+          <p>所以我把進度改成由後端回傳，畫面會顯示目前階段、百分比、頁數和處理訊息。</p>
         </div>
       </div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">第四步：和 AI 一起縮小範圍</div>
-      <h2>真正困難的不是做更多，而是決定先不做什麼</h2>
+      <div class="eyebrow">決定第一版範圍</div>
+      <h2>做到一半才發現，PowerPoint 其實很複雜</h2>
       <div class="grid two">
         <div class="panel green">
           <h3>保留的第一版範圍</h3>
@@ -498,12 +498,12 @@
           </ul>
         </div>
       </div>
-      <p class="lead">這一步讓我發現：跟 AI 合作時，不只要問「能不能做」，也要問「第一版做到哪裡最合理」。</p>
+      <p class="lead">這一步讓我學到，問 AI 的時候不能只問「可不可以全部做」，也要想清楚第一版先做到哪裡比較合理。</p>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">第五步：把粗略需求變成工程細節</div>
-      <h2>AI 幫我看見 PowerPoint 不是單純文字檔</h2>
+      <div class="eyebrow">處理格式問題</div>
+      <h2>翻譯簡報不是把文字整段換掉就好</h2>
       <div class="grid three">
         <div class="panel blue">
           <span class="mini-label">段落單位</span>
@@ -518,12 +518,12 @@
           <p>翻譯後若文字可能超出文字框，逐步縮小字體，仍有風險時顯示警告。</p>
         </div>
       </div>
-      <div class="quote">如果只叫 AI「翻譯 PowerPoint」，結果很容易壞掉；把格式保留講清楚，才會接近真正可用。</div>
+      <div class="quote">我後來才理解，如果直接覆蓋整個文字方塊，排版很容易跑掉；所以需求要寫得很細，結果才會比較接近能用。</div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">第六步：讓需求長出特色</div>
-      <h2>聊天過程中，講者備註變成最關鍵的功能</h2>
+      <div class="eyebrow">加入備註語音</div>
+      <h2>後來我發現，真正重要的是講者備註</h2>
       <div class="grid two">
         <div class="panel blue">
           <h3>投影片文字路徑</h3>
@@ -536,64 +536,64 @@
       </div>
       <div class="panel amber" style="margin-top: 24px;">
         <h3>我的心得</h3>
-        <p>AI 不只是幫我寫程式，也會在對話中追問「真正要解決的是什麼」。所以功能從畫面翻譯，延伸到備註翻譯與旁白嵌入。</p>
+        <p>這部分是我覺得和 AI 討論最有用的地方。它讓我重新想，使用者真正需要的不是只有看到翻譯，而是能理解講師原本想補充的內容。</p>
       </div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">第七步：用 AI 排查現實限制</div>
-      <h2>不是每次錯誤都能一次修好，但可以一步步逼近原因</h2>
+      <div class="eyebrow">實作中遇到的限制</div>
+      <h2>很多問題不是寫完程式就結束了</h2>
       <div class="grid two">
         <div class="panel blue">
           <h3>模型與環境</h3>
-          <p>過程中遇到雲端模型、地端 Ollama、模型錯誤、網路與設定問題，最後改成可切換模型，保留彈性。</p>
+          <p>過程中我試過雲端模型和地端 Ollama，也遇到模型錯誤、網路設定和連線問題，所以最後做成可以切換模型的方式。</p>
           <img class="shot zoomable" src="assets/03-model.png" alt="翻譯模型切換選單" tabindex="0" />
         </div>
         <div class="panel amber">
           <h3>語音包限制</h3>
-          <p>Windows SAPI 可以免費用本機語音，但必須檢查語音包是否存在，否則產生語音會失敗。</p>
+          <p>語音部分改用 Windows 本機語音，雖然不用另外付費，但如果電腦沒有安裝對應語音包，就會產生失敗。</p>
           <img class="shot zoomable" src="assets/02-language.png" alt="語言選單與語音包狀態" tabindex="0" />
         </div>
       </div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">第八步：從錯誤回饋中修正產品</div>
-      <h2>AI 協作最有價值的地方，是能把錯誤變成下一版需求</h2>
+      <div class="eyebrow">測試後一直修正</div>
+      <h2>很多功能都是實際測了才知道少了什麼</h2>
       <div class="split">
         <div>
           <img class="shot large zoomable" src="assets/04-progress.png" alt="翻譯進度畫面" tabindex="0" />
-          <p class="caption">處理中畫面：錯誤、進度、停止按鈕與頁數，都來自實際測試後逐步補上。</p>
+          <p class="caption">處理中畫面：進度、頁數、錯誤提示和停止按鈕，都是測試時發現需要才補上的。</p>
         </div>
         <div>
           <img class="shot zoomable" src="assets/05-complete.png" alt="翻譯完成下載畫面" tabindex="0" />
-          <p class="caption">完成畫面：除了下載，也要讓使用者知道處理了什麼、有哪些警告。</p>
+          <p class="caption">完成畫面：不只是下載檔案，也要讓使用者知道這次處理了哪些內容。</p>
         </div>
       </div>
     </section>
 
     <section class="slide">
       <div class="eyebrow">最後心得</div>
-      <h2>這次使用 AI，我學到的不是只要會下指令</h2>
+      <h2>這次使用 AI，我學到的不只是下指令</h2>
       <div class="grid two">
         <div class="panel green">
           <h3>對我最有幫助的地方</h3>
           <ul>
-            <li>把模糊想法整理成可以實作的需求</li>
-            <li>把大功能拆成前端、後端、檔案處理、語音與部署</li>
-            <li>遇到錯誤時，用紀錄和現象逐步排查</li>
+            <li>把一個模糊想法慢慢整理成可以做的需求</li>
+            <li>把很大的功能拆成前端、後端、檔案處理和語音功能</li>
+            <li>遇到錯誤時，先看現象和紀錄，再一步一步找原因</li>
           </ul>
         </div>
         <div class="panel blue">
           <h3>也要注意的地方</h3>
           <ul>
-            <li>AI 可能會先做太多，需要人來守住範圍</li>
-            <li>結果不能只看「有跑」，還要真的測試</li>
-            <li>每次修正都要確認沒有影響原本版面與流程</li>
+            <li>AI 有時候會做太多，所以自己要守住需求範圍</li>
+            <li>不能只看程式有沒有跑，還要真的拿檔案測試</li>
+            <li>修一個問題時，也要確認沒有把其他地方改壞</li>
           </ul>
         </div>
       </div>
-      <div class="quote">AI 像是一個很快的協作者，但方向、取捨和驗收，仍然要由使用者自己掌握。</div>
+      <div class="quote">對我來說，AI 很像一個可以一直討論的夥伴，但最後要做什麼、做到哪裡、算不算完成，還是要自己判斷。</div>
     </section>
   </main>
 
