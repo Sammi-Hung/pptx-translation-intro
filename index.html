@@ -83,14 +83,14 @@
     h1, h2, h3, p { margin: 0; }
 
     h1 {
-      max-width: 980px;
+      max-width: 1180px;
       font-size: clamp(42px, 5.6vw, 76px);
       line-height: 1.08;
       letter-spacing: 0;
     }
 
     h2 {
-      max-width: 980px;
+      max-width: 1160px;
       font-size: clamp(34px, 4.1vw, 56px);
       line-height: 1.12;
       letter-spacing: 0;
@@ -102,7 +102,7 @@
     }
 
     .lead {
-      max-width: 900px;
+      max-width: 1060px;
       margin-top: 22px;
       color: var(--muted);
       font-size: clamp(20px, 2vw, 30px);
@@ -111,9 +111,11 @@
 
     .quote {
       margin-top: 34px;
-      padding: 24px 28px;
-      border-left: 8px solid var(--brand);
-      background: var(--blue-50);
+      width: 100%;
+      padding: 26px 34px;
+      border-top: 3px solid var(--brand);
+      border-left: 0;
+      background: linear-gradient(90deg, var(--blue-50), rgba(238, 247, 255, 0.38));
       color: var(--brand-dark);
       font-size: clamp(24px, 2.5vw, 36px);
       line-height: 1.45;
@@ -122,8 +124,8 @@
 
     .grid {
       display: grid;
-      gap: 22px;
-      margin-top: 32px;
+      gap: 26px;
+      margin-top: 34px;
     }
 
     .grid.two {
@@ -136,31 +138,32 @@
     }
 
     .panel {
-      min-height: 132px;
-      padding: 22px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: #fff;
+      min-height: 150px;
+      padding: 24px 28px 22px 30px;
+      border: 0;
+      border-left: 8px solid var(--line);
+      border-radius: 0;
+      background: linear-gradient(90deg, rgba(246, 249, 253, 0.9), rgba(255, 255, 255, 0.2));
     }
 
     .panel.blue {
-      border-color: var(--blue-100);
-      background: var(--blue-50);
+      border-left-color: var(--brand);
+      background: linear-gradient(90deg, var(--blue-50), rgba(238, 247, 255, 0.28));
     }
 
     .panel.green {
-      border-color: var(--green-200);
-      background: var(--green-50);
+      border-left-color: #19a66b;
+      background: linear-gradient(90deg, var(--green-50), rgba(234, 250, 242, 0.28));
     }
 
     .panel.amber {
-      border-color: var(--amber-200);
-      background: var(--amber-50);
+      border-left-color: #d29a00;
+      background: linear-gradient(90deg, var(--amber-50), rgba(255, 248, 231, 0.28));
     }
 
     .panel.rose {
-      border-color: var(--rose-200);
-      background: var(--rose-50);
+      border-left-color: #dc3545;
+      background: linear-gradient(90deg, var(--rose-50), rgba(255, 241, 242, 0.28));
     }
 
     .panel p,
@@ -199,20 +202,26 @@
     .flow {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 14px;
+      gap: 0;
       margin-top: 34px;
     }
 
     .step {
-      min-height: 124px;
-      padding: 18px;
-      border: 1px solid var(--blue-100);
-      border-radius: 12px;
-      background: var(--blue-50);
+      min-height: 132px;
+      display: flex;
+      align-items: center;
+      padding: 22px;
+      border: 0;
+      border-left: 1px solid rgba(15, 79, 138, 0.18);
+      background: linear-gradient(180deg, var(--blue-50), #f9fcff);
       font-size: clamp(18px, 1.4vw, 22px);
       line-height: 1.4;
       font-weight: 800;
       color: var(--brand-dark);
+    }
+
+    .step:first-child {
+      border-left: 6px solid var(--brand);
     }
 
     .shot {
@@ -221,9 +230,9 @@
       max-height: 410px;
       object-fit: contain;
       border: 1px solid var(--line);
-      border-radius: 12px;
+      border-radius: 0;
       background: #f6f9fd;
-      box-shadow: 0 12px 30px rgba(16, 35, 63, 0.08);
+      box-shadow: none;
       cursor: zoom-in;
     }
 
@@ -250,9 +259,9 @@
     .split {
       display: grid;
       grid-template-columns: 1.03fr 0.97fr;
-      gap: 34px;
-      align-items: center;
-      margin-top: 28px;
+      gap: 48px;
+      align-items: stretch;
+      margin-top: 34px;
     }
 
     .controls {
