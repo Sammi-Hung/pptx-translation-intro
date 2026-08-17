@@ -507,6 +507,37 @@
     </section>
 
     <section class="slide">
+      <div class="eyebrow">語言與模型選擇</div>
+      <h2>翻譯前可以先確認語言、模型和語音包狀態</h2>
+      <div class="split">
+        <div class="grid">
+          <div class="panel blue">
+            <h3>支援語言</h3>
+            <p>目前支援繁體中文、英文和泰文。使用者需要選擇原始語言與目標語言，兩者不能相同。</p>
+          </div>
+          <div class="panel green">
+            <h3>模型選擇</h3>
+            <p>翻譯模型可以切換雲端或地端。地端模型保留 Ollama 選項，方便依照網路、成本和資料敏感度調整。</p>
+          </div>
+          <div class="panel amber">
+            <h3>語音包檢查</h3>
+            <p>因為語音使用 Windows 本機 SAPI，所以開始前會先顯示目前偵測到的目標語言語音包。</p>
+          </div>
+        </div>
+        <div class="grid two">
+          <div>
+            <img class="shot zoomable" src="assets/08-language-options.png" alt="語言選單支援繁體中文、英文和泰文" tabindex="0" />
+            <p class="caption">語言選單：支援繁體中文、英文和泰文。</p>
+          </div>
+          <div>
+            <img class="shot zoomable" src="assets/09-model-options.png" alt="雲端與地端翻譯模型選單" tabindex="0" />
+            <p class="caption">模型選單：可切換雲端模型與地端 Ollama 模型。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
       <div class="eyebrow">處理中的狀態</div>
       <h2>進度條不能只是動畫，要真的反映後端工作</h2>
       <div class="split">
@@ -570,19 +601,19 @@
     </section>
 
     <section class="slide">
-      <div class="eyebrow">實測遇到的問題</div>
-      <h2>錯誤訊息要讓使用者知道下一步怎麼做</h2>
+      <div class="eyebrow">我和 AI 來回修正的代表問題</div>
+      <h2>錯誤畫面不是結束，而是下一輪修正的線索</h2>
       <div class="grid two">
         <div>
           <img class="shot zoomable" src="assets/06-translation-error.png" alt="正式翻譯服務回應錯誤畫面" tabindex="0" />
-          <p class="caption">翻譯服務可能失敗，不能只假設 API 一定正常。</p>
+          <p class="caption">第一次只看到「正式翻譯服務回應錯誤」，後來才補強 API 失敗時的錯誤分類和重新開始流程。</p>
         </div>
         <div>
           <img class="shot zoomable" src="assets/07-state-error.png" alt="翻譯中同時顯示 Failed to fetch 的狀態錯誤畫面" tabindex="0" />
-          <p class="caption">畫面同時出現翻譯中和錯誤，會讓使用者不確定系統狀態。</p>
+          <p class="caption">畫面同時出現翻譯中和錯誤，代表前端顯示、後端狀態和網路錯誤需要重新整理邏輯。</p>
         </div>
       </div>
-      <div class="quote">這類問題讓我後來更重視進度、錯誤和停止狀態要以後端工作狀態為準。</div>
+      <div class="quote">我把錯誤截圖和現象拿去和 AI 討論，才一步步釐清：狀態顯示不能靠前端猜，要以後端工作狀態為準。</div>
     </section>
 
     <section class="slide">
@@ -649,7 +680,7 @@
 
   <div class="controls" aria-label="簡報控制">
     <button type="button" id="prev">上一頁</button>
-    <div class="count" id="count">1 / 12</div>
+    <div class="count" id="count">1 / 13</div>
     <button type="button" id="next">下一頁</button>
     <button type="button" id="fullscreen">全螢幕</button>
   </div>
