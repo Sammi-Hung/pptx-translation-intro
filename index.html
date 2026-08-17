@@ -402,32 +402,32 @@
 <body>
   <main class="deck">
     <section class="slide active">
-      <div class="eyebrow">公司內部教育訓練工具</div>
-      <h1>從語言理解落差，到 PowerPoint 多語言教材轉換工具</h1>
-      <p class="lead">這份簡報不是只介紹功能，而是說明需求如何從一個實際問題開始，一路收斂成目前可操作的網站。</p>
-      <div class="quote">如何讓不同語言背景的員工，都能比較完整地理解同一份教育訓練簡報內容？</div>
+      <div class="eyebrow">AI 協作實作分享</div>
+      <h1>我如何用 AI 做出簡報翻譯工具</h1>
+      <p class="lead">這份簡報分享的重點不是單純展示功能，而是我如何透過 AI 對話，把一個模糊需求拆清楚、做出原型、排查錯誤，再逐步收斂成可用工具。</p>
+      <div class="quote">AI 最有幫助的地方，不是一次給答案，而是陪我把問題問得更精準。</div>
       <div class="hint">使用方向鍵或空白鍵換頁，點擊圖片可放大</div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">背景需求</div>
-      <h2>起點不是「翻譯工具」，而是教育訓練的理解落差</h2>
+      <div class="eyebrow">第一步：把問題講清楚</div>
+      <h2>一開始我只有一個很實際的困擾</h2>
       <div class="grid two">
         <div class="panel blue">
-          <h3>公司現場遇到的問題</h3>
+          <h3>現場問題</h3>
           <p>外籍員工可能不熟悉中文，也不一定能完全理解英文。當教材只有單一語言時，訓練內容容易被片段理解。</p>
         </div>
         <div class="panel green">
-          <h3>簡報內容不只在畫面上</h3>
+          <h3>AI 幫我補上的觀點</h3>
           <p>講師真正要補充的說明，常常寫在 PowerPoint 講者備註裡。因此只翻譯投影片文字，仍然不夠完整。</p>
         </div>
       </div>
-      <div class="quote">專案逐漸從「簡報文字翻譯」變成「投影片內容加講者旁白的多語言轉換」。</div>
+      <div class="quote">對話後，需求從「幫我翻譯簡報」變成「讓不同語言背景的人能看懂也聽懂教材」。</div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">初始想法</div>
-      <h2>最初希望使用者只需要完成三件事</h2>
+      <div class="eyebrow">第二步：先做出可使用流程</div>
+      <h2>AI 讓我先鎖定最小可用流程</h2>
       <div class="split">
         <div class="grid three">
           <div class="panel blue">
@@ -448,14 +448,14 @@
         </div>
         <div>
           <img class="shot large zoomable" src="assets/01-home.png" alt="網站首頁操作介面" tabindex="0" />
-          <p class="caption">首頁畫面：左側上傳簡報，右側選擇語言、模型與檢查 Windows 語音包。</p>
+          <p class="caption">首頁畫面保留簡單入口：上傳、選語言、選模型、檢查語音包。</p>
         </div>
       </div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">操作流程收斂</div>
-      <h2>等待處理時，使用者需要知道系統正在做什麼</h2>
+      <div class="eyebrow">第三步：讓 AI 協助拆解流程</div>
+      <h2>從一句「開始翻譯」拆成可追蹤的階段</h2>
       <div class="flow">
         <div class="step">驗證上傳檔案</div>
         <div class="step">解析簡報內容</div>
@@ -465,22 +465,22 @@
       </div>
       <div class="grid two">
         <div class="panel blue">
-          <h3>避免重複送出</h3>
-          <p>翻譯開始後會鎖定上傳區、語言選單與模型選單，避免同一時間處理多個檔案造成狀態混亂。</p>
+          <h3>我學到的事</h3>
+          <p>使用者等待時最怕不知道系統是否還活著，所以進度不能只是前端動畫，而要真的來自後端狀態。</p>
         </div>
         <div class="panel green">
-          <h3>進度來自後端狀態</h3>
-          <p>畫面每秒查詢後端工作狀態，顯示目前階段、處理頁數、總頁數與即時訊息。</p>
+          <h3>AI 幫忙轉成規格</h3>
+          <p>每個階段都要有狀態、百分比、頁數與訊息，才能在出錯時知道卡在哪一步。</p>
         </div>
       </div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">最重要的一次需求收斂</div>
-      <h2>PowerPoint 裡不是所有東西都適合第一版翻譯</h2>
+      <div class="eyebrow">第四步：和 AI 一起縮小範圍</div>
+      <h2>真正困難的不是做更多，而是決定先不做什麼</h2>
       <div class="grid two">
         <div class="panel green">
-          <h3>第一版處理範圍</h3>
+          <h3>保留的第一版範圍</h3>
           <ul>
             <li>一般文字方塊</li>
             <li>標題 Placeholder</li>
@@ -490,7 +490,7 @@
           </ul>
         </div>
         <div class="panel rose">
-          <h3>第一版刻意不處理</h3>
+          <h3>先排除的複雜內容</h3>
           <ul>
             <li>圖片內文字、表格、SmartArt 與圖表</li>
             <li>WordArt、群組物件與嵌入式物件</li>
@@ -498,12 +498,12 @@
           </ul>
         </div>
       </div>
-      <p class="lead">這個收斂讓系統更穩定，也降低翻譯過程破壞原始簡報排版的機率。</p>
+      <p class="lead">這一步讓我發現：跟 AI 合作時，不只要問「能不能做」，也要問「第一版做到哪裡最合理」。</p>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">格式保留</div>
-      <h2>翻譯不能只是把整個文字方塊覆蓋掉</h2>
+      <div class="eyebrow">第五步：把粗略需求變成工程細節</div>
+      <h2>AI 幫我看見 PowerPoint 不是單純文字檔</h2>
       <div class="grid three">
         <div class="panel blue">
           <span class="mini-label">段落單位</span>
@@ -518,12 +518,12 @@
           <p>翻譯後若文字可能超出文字框，逐步縮小字體，仍有風險時顯示警告。</p>
         </div>
       </div>
-      <div class="quote">目的不是做一份全新簡報，而是在盡量不破壞原始版面的前提下完成多語言轉換。</div>
+      <div class="quote">如果只叫 AI「翻譯 PowerPoint」，結果很容易壞掉；把格式保留講清楚，才會接近真正可用。</div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">關鍵特色</div>
-      <h2>講者備註讓工具不只是「翻譯投影片」</h2>
+      <div class="eyebrow">第六步：讓需求長出特色</div>
+      <h2>聊天過程中，講者備註變成最關鍵的功能</h2>
       <div class="grid two">
         <div class="panel blue">
           <h3>投影片文字路徑</h3>
@@ -535,65 +535,65 @@
         </div>
       </div>
       <div class="panel amber" style="margin-top: 24px;">
-        <h3>語音功能的第一版邊界</h3>
-        <p>只使用投影片原本的講者備註產生旁白。沒有備註的頁面不自動產生講稿，也不拿投影片文字代替。</p>
+        <h3>我的心得</h3>
+        <p>AI 不只是幫我寫程式，也會在對話中追問「真正要解決的是什麼」。所以功能從畫面翻譯，延伸到備註翻譯與旁白嵌入。</p>
       </div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">技術限制與決策</div>
-      <h2>開發過程中的限制，也反過來定義產品邊界</h2>
+      <div class="eyebrow">第七步：用 AI 排查現實限制</div>
+      <h2>不是每次錯誤都能一次修好，但可以一步步逼近原因</h2>
       <div class="grid two">
         <div class="panel blue">
-          <h3>翻譯模型切換</h3>
-          <p>保留雲端模型與地端 Ollama 模型切換介面，讓公司可依成本、速度與資料安全需求調整。</p>
+          <h3>模型與環境</h3>
+          <p>過程中遇到雲端模型、地端 Ollama、模型錯誤、網路與設定問題，最後改成可切換模型，保留彈性。</p>
           <img class="shot zoomable" src="assets/03-model.png" alt="翻譯模型切換選單" tabindex="0" />
         </div>
         <div class="panel amber">
-          <h3>Windows 本機語音</h3>
-          <p>第一版採用 Windows SAPI，不額外產生外部語音費用，但語音品質與可用語言取決於電腦安裝的語音包。</p>
+          <h3>語音包限制</h3>
+          <p>Windows SAPI 可以免費用本機語音，但必須檢查語音包是否存在，否則產生語音會失敗。</p>
           <img class="shot zoomable" src="assets/02-language.png" alt="語言選單與語音包狀態" tabindex="0" />
         </div>
       </div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">最終成果</div>
-      <h2>最後形成一個可操作、可驗證、可下載的網站流程</h2>
+      <div class="eyebrow">第八步：從錯誤回饋中修正產品</div>
+      <h2>AI 協作最有價值的地方，是能把錯誤變成下一版需求</h2>
       <div class="split">
         <div>
           <img class="shot large zoomable" src="assets/04-progress.png" alt="翻譯進度畫面" tabindex="0" />
-          <p class="caption">處理中畫面會顯示目前階段、進度百分比、頁數與可即時停止的按鈕。</p>
+          <p class="caption">處理中畫面：錯誤、進度、停止按鈕與頁數，都來自實際測試後逐步補上。</p>
         </div>
         <div>
           <img class="shot zoomable" src="assets/05-complete.png" alt="翻譯完成下載畫面" tabindex="0" />
-          <p class="caption">完成後顯示輸出檔名、總頁數、語音頁數、警告數與下載按鈕。</p>
+          <p class="caption">完成畫面：除了下載，也要讓使用者知道處理了什麼、有哪些警告。</p>
         </div>
       </div>
     </section>
 
     <section class="slide">
-      <div class="eyebrow">最終定位</div>
-      <h2>這是一套降低多語言教材製作門檻的內部工具</h2>
+      <div class="eyebrow">最後心得</div>
+      <h2>這次使用 AI，我學到的不是只要會下指令</h2>
       <div class="grid two">
         <div class="panel green">
-          <h3>帶來的價值</h3>
+          <h3>對我最有幫助的地方</h3>
           <ul>
-            <li>降低不同語言背景員工的訓練理解落差</li>
-            <li>減少人工翻譯簡報與重錄旁白的時間</li>
-            <li>讓教材文字、備註與旁白維持在同一份檔案中</li>
+            <li>把模糊想法整理成可以實作的需求</li>
+            <li>把大功能拆成前端、後端、檔案處理、語音與部署</li>
+            <li>遇到錯誤時，用紀錄和現象逐步排查</li>
           </ul>
         </div>
         <div class="panel blue">
-          <h3>第一版保持克制</h3>
+          <h3>也要注意的地方</h3>
           <ul>
-            <li>不加入登入、資料庫與多檔案排隊</li>
-            <li>不處理 PDF、OCR 或圖片內文字</li>
-            <li>複雜格式仍保留人工確認空間</li>
+            <li>AI 可能會先做太多，需要人來守住範圍</li>
+            <li>結果不能只看「有跑」，還要真的測試</li>
+            <li>每次修正都要確認沒有影響原本版面與流程</li>
           </ul>
         </div>
       </div>
-      <div class="quote">從實際教育訓練需求出發，讓同一份 PowerPoint 能更接近多語言可理解、可聽、可下載的教材。</div>
+      <div class="quote">AI 像是一個很快的協作者，但方向、取捨和驗收，仍然要由使用者自己掌握。</div>
     </section>
   </main>
 
