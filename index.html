@@ -42,21 +42,20 @@
       height: 100vh;
       display: grid;
       place-items: center;
-      padding: 24px;
+      padding: 0;
     }
 
     .slide {
       display: none;
       position: relative;
-      width: min(1280px, calc(100vw - 48px));
-      aspect-ratio: 16 / 9;
-      max-height: calc(100vh - 48px);
+      width: 100vw;
+      height: 100vh;
       overflow: hidden;
-      padding: clamp(32px, 4vw, 64px);
-      border: 1px solid var(--line);
-      border-radius: 18px;
+      padding: clamp(42px, 5vw, 78px);
+      border: 0;
+      border-radius: 0;
       background: var(--paper);
-      box-shadow: var(--shadow);
+      box-shadow: none;
       animation: enter 360ms ease both;
     }
 
@@ -259,13 +258,13 @@
     .controls {
       position: fixed;
       left: 50%;
-      bottom: 24px;
+      bottom: 18px;
       display: flex;
       align-items: center;
       gap: 12px;
       transform: translateX(-50%);
       z-index: 20;
-      padding: 10px 12px;
+      padding: 8px 10px;
       border: 1px solid rgba(216, 226, 239, 0.9);
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.86);
@@ -274,10 +273,10 @@
     }
 
     button {
-      height: 42px;
+      height: 38px;
       border: 1px solid var(--line);
       border-radius: 999px;
-      padding: 0 18px;
+      padding: 0 15px;
       background: white;
       color: var(--ink);
       font: inherit;
@@ -300,7 +299,7 @@
 
     .hint {
       position: absolute;
-      right: 36px;
+      right: 34px;
       bottom: 28px;
       color: #7a8ba0;
       font-size: 14px;
@@ -346,17 +345,17 @@
       .deck {
         height: auto;
         min-height: 100vh;
-        padding: 14px;
+        padding: 0;
       }
 
       .slide {
         width: 100%;
-        min-height: calc(100vh - 100px);
+        min-height: 100vh;
         height: auto;
         max-height: none;
         aspect-ratio: auto;
         overflow: visible;
-        padding: 26px;
+        padding: 26px 20px 92px;
       }
 
       .grid.two,
@@ -643,6 +642,7 @@
     <button type="button" id="prev">上一頁</button>
     <div class="count" id="count">1 / 12</div>
     <button type="button" id="next">下一頁</button>
+    <button type="button" id="fullscreen">全螢幕</button>
   </div>
 
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="放大圖片">
@@ -656,6 +656,7 @@
     const lightbox = document.getElementById("lightbox");
     const lightboxImage = document.getElementById("lightboxImage");
     const closeLightbox = document.getElementById("closeLightbox");
+    const fullscreenButton = document.getElementById("fullscreen");
     let index = 0;
     let lastFocusedImage = null;
 
@@ -696,6 +697,14 @@
     document.getElementById("prev").addEventListener("click", () => showSlide(index - 1));
     document.getElementById("next").addEventListener("click", () => showSlide(index + 1));
 
+    async function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        await document.documentElement.requestFullscreen();
+      } else {
+        await document.exitFullscreen();
+      }
+    }
+
     function openImage(image) {
       lastFocusedImage = image;
       lightboxImage.src = image.src;
@@ -723,6 +732,14 @@
     closeLightbox.addEventListener("click", closeImage);
     lightbox.addEventListener("click", (event) => {
       if (event.target === lightbox) closeImage();
+    });
+    fullscreenButton.addEventListener("click", () => {
+      toggleFullscreen().catch(() => {
+        fullscreenButton.textContent = "全螢幕";
+      });
+    });
+    document.addEventListener("fullscreenchange", () => {
+      fullscreenButton.textContent = document.fullscreenElement ? "退出全螢幕" : "全螢幕";
     });
     window.addEventListener("hashchange", fromHash);
     fromHash();
